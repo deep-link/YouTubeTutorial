@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.3">
+   <BuildAction>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForRunning = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "84C8329023C1ACBD003FF96E"
+               BuildableName = "YouTubeTutorial.app"
+               BlueprintName = "YouTubeTutorial"
+               ReferencedContainer = "container:YouTubeTutorial.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <LaunchAction
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "84C8329023C1ACBD003FF96E"
+            BuildableName = "YouTubeTutorial.app"
+            BlueprintName = "YouTubeTutorial"
+            ReferencedContainer = "container:YouTubeTutorial.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+</Scheme>

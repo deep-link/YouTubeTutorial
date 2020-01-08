@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5860387CF0B8B9689DBA7676 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586030FCA14E4884D5880F16 /* MenuCell.swift */; };
+		586039E0A37AEC94B19B8AC2 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586037F0A1289D7861361517 /* BaseCell.swift */; };
 		845FB89123C4CED500D0F167 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845FB89023C4CED500D0F167 /* Extensions.swift */; };
 		845FB89423C4CF7300D0F167 /* VideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845FB89323C4CF7300D0F167 /* VideoCell.swift */; };
 		845FB89723C4D97B00D0F167 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845FB89623C4D97B00D0F167 /* MenuBar.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		586030FCA14E4884D5880F16 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		586037F0A1289D7861361517 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		845FB89023C4CED500D0F167 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		845FB89323C4CF7300D0F167 /* VideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCell.swift; sourceTree = "<group>"; };
 		845FB89623C4D97B00D0F167 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -54,6 +58,8 @@
 			children = (
 				845FB89323C4CF7300D0F167 /* VideoCell.swift */,
 				845FB89623C4D97B00D0F167 /* MenuBar.swift */,
+				586037F0A1289D7861361517 /* BaseCell.swift */,
+				586030FCA14E4884D5880F16 /* MenuCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -181,6 +187,8 @@
 				845FB89123C4CED500D0F167 /* Extensions.swift in Sources */,
 				84C832A923C1B0FD003FF96E /* HomeController.swift in Sources */,
 				845FB89723C4D97B00D0F167 /* MenuBar.swift in Sources */,
+				586039E0A37AEC94B19B8AC2 /* BaseCell.swift in Sources */,
+				5860387CF0B8B9689DBA7676 /* MenuCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
