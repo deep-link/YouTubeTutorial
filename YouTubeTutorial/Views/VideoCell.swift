@@ -10,31 +10,29 @@ import UIKit
 
 class VideoCell: BaseCell {
     var titleLabelHeightConstraint: NSLayoutConstraint?
-    var video:Video?{
+    var video: Video? {
         didSet {
             titleLabel.text = video?.title
-            
-            thumbnailImageView.image = UIImage(named: (video?.thumbnailImageName)!)
-            
-            if let profileImageName = video?.channel?.profileImageName {
-                userProfileImageView.image = UIImage(named: profileImageName)
-            }
-            
+
+            setupThumbnailImage()
+
+            setupProfileImage()
+
             if let channelName = video?.channel?.name, let numberOfViews = video?.views {
-                
+
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
-                
+
                 let subtitleText = "\(channelName) • \(numberFormatter.string(from: numberOfViews)!) • 2 years ago "
                 subtitleTextView.text = subtitleText
             }
-            
+
             //measure title text
             if let title = video?.title {
                 let size = CGSize(width: frame.width - 16 - 44 - 8 - 16, height: 1000)
                 let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
                 let estimatedRect = NSString(string: title).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)], context: nil)
-                
+
                 if estimatedRect.size.height > 20 {
                     titleLabelHeightConstraint?.constant = 44
                 } else {
@@ -51,6 +49,18 @@ class VideoCell: BaseCell {
         imageView.clipsToBounds = true
         return imageView
     }()
+
+    func setupProfileImage() {
+        if let profileImageUrl = video?.channel?.profileImageName {
+            userProfileImageView.loadImageUsingUrlString(urlString: profileImageUrl)
+        }
+    }
+
+    func setupThumbnailImage() {
+        if let thumbnailImageUrl = video?.thumbnailImageName {
+            thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageUrl)
+        }
+    }
 
     let userProfileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -81,7 +91,6 @@ class VideoCell: BaseCell {
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
-
 
 
     override func setUpViews() {
