@@ -13,31 +13,33 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     let menuBar: MenuBar = {
         return MenuBar()
     }()
-    let videos: [Video] = {
-        let kanyeChannel = Channel()
-        kanyeChannel.name = "Kanye channel name"
-        kanyeChannel.profileImageName = "kanye_profile"
-        
-        var blankSpace = Video()
-        blankSpace.title = "Taylor Swift - Blank Space"
-        blankSpace.thumbnailImageName = "taylor_swift_blank_space"
-        blankSpace.channel = kanyeChannel
-        blankSpace.views = 12345678
-        var badBlood = Video()
-        badBlood.title = "Taylor Swift - Bad Blood"
-        badBlood.thumbnailImageName = "taylor_swift_bad_blood"
-        badBlood.channel = kanyeChannel
-        badBlood.views = 1234567890
-    
-        
-        return [
-            blankSpace,
-            badBlood
-        ]
-    }()
+    var videos: [Video]?
+//    let videos: [Video] = {
+//        let kanyeChannel = Channel()
+//        kanyeChannel.name = "Kanye channel name"
+//        kanyeChannel.profileImageName = "kanye_profile"
+//
+//        var blankSpace = Video()
+//        blankSpace.title = "Taylor Swift - Blank Space"
+//        blankSpace.thumbnailImageName = "taylor_swift_blank_space"
+//        blankSpace.channel = kanyeChannel
+//        blankSpace.views = 12345678
+//        var badBlood = Video()
+//        badBlood.title = "Taylor Swift - Bad Blood"
+//        badBlood.thumbnailImageName = "taylor_swift_bad_blood"
+//        badBlood.channel = kanyeChannel
+//        badBlood.views = 1234567890
+//
+//
+//        return [
+//            blankSpace,
+//            badBlood
+//        ]
+//    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchVideos()
         navigationItem.title = "Home"
         navigationController?.navigationBar.isTranslucent = false
         let titleLable = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
@@ -50,6 +52,32 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         setUpMenuBar()
         setUpNavBarButtons()
+    }
+
+    private func fetchVideos() {
+        guard let url = URL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json") else {
+            return
+        }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+
+            if error != nil {
+                print(error ?? "")
+                return
+            }
+
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+
+                self.videos = [Video]()
+
+                for dictionary in json as! [[String: AnyObject]] {
+
+                    print(dictionary["title"] as! String)
+                }
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }.resume()
     }
 
     func setUpNavBarButtons() {
@@ -80,12 +108,12 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videos.count
+        return videos?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCell
-        cell.video = videos[indexPath.item]
+        cell.video = videos?[indexPath.item]
         return cell
     }
 
