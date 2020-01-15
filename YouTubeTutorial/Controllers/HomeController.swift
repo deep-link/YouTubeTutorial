@@ -13,29 +13,10 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     let menuBar: MenuBar = {
         return MenuBar()
     }()
+
+    let settings = Settings()
+
     var videos: [Video]?
-//    let videos: [Video] = {
-//        let kanyeChannel = Channel()
-//        kanyeChannel.name = "Kanye channel name"
-//        kanyeChannel.profileImageName = "kanye_profile"
-//
-//        var blankSpace = Video()
-//        blankSpace.title = "Taylor Swift - Blank Space"
-//        blankSpace.thumbnailImageName = "taylor_swift_blank_space"
-//        blankSpace.channel = kanyeChannel
-//        blankSpace.views = 12345678
-//        var badBlood = Video()
-//        badBlood.title = "Taylor Swift - Bad Blood"
-//        badBlood.thumbnailImageName = "taylor_swift_bad_blood"
-//        badBlood.channel = kanyeChannel
-//        badBlood.views = 1234567890
-//
-//
-//        return [
-//            blankSpace,
-//            badBlood
-//        ]
-//    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,7 +84,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     @objc func handleMore() {
-
+        settings.handleMore()
     }
 
     @objc func handleSearch() {
