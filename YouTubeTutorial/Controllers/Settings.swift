@@ -71,10 +71,10 @@ class Settings: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, 
 
             window.addSubview(collectionView)
 
-            let height: CGFloat = 200
+            let height: CGFloat = CGFloat(settings.count) * cellHeight
             let y = window.frame.height - height
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
-
+            collectionView.isScrollEnabled = false
             blackView.frame = window.frame
             blackView.alpha = 0
 
