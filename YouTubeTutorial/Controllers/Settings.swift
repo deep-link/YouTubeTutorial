@@ -33,6 +33,8 @@ class Settings: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, 
 
     private let cellID: String = "cellID"
 
+    var homeController: HomeController?
+
     override init() {
         super.init()
         collectionView.dataSource = self
@@ -59,6 +61,12 @@ class Settings: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, 
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let setting = settings[indexPath.item]
+        handleDismissMore(setting: setting)
+
     }
 
     func handleMore() {
@@ -89,13 +97,19 @@ class Settings: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, 
 
     }
 
-    @objc func handleDismissMore() {
-        UIView.animate(withDuration: 0.5, animations: {
+    @objc func handleDismissMore(setting: Setting) {
+
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.blackView.alpha = 0
 
             if let window = UIApplication.shared.keyWindow {
                 self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
             }
-        })
+        }) { (completed: Bool) in
+            if type(of: setting) == Setting.self  && setting.name != "" && setting.name != "Cancel" {
+                self.homeController?.showControllerForSettings(setting: setting)
+            }
+
+        }
     }
 }
