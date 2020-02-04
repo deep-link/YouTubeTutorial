@@ -73,10 +73,18 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
     private func setUpMenuBar() {
         navigationController?.hidesBarsOnSwipe = true
+
+        let redView = UIView()
+        redView.backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31)
+        view.addSubview(redView)
+        view.addConstraintsWithFormat("H:|[v0]|", views: redView)
+        view.addConstraintsWithFormat("V:[v0(50)]", views: redView)
+
         view.addSubview(menuBar)
         view.addConstraintsWithFormat("H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat("V:[v0(60)]", views: menuBar)
-        menuBar.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor).isActive = true
+        view.addConstraintsWithFormat("V:[v0(50)]", views: menuBar)
+
+        menuBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
