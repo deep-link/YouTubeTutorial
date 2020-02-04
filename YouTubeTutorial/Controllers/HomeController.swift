@@ -39,7 +39,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
 
     private func fetchVideos() {
-        ApiService.shared.fetchVideos { (videos:[Video]) in
+        ApiService.shared.fetchVideos { (videos: [Video]) in
             self.videos = videos
             self.collectionView.reloadData()
         }
